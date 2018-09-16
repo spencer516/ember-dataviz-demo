@@ -1,0 +1,73 @@
+<MarginGaugeContainer @padding=50 @width=500 as |container|>
+  <AnimateValue
+    @value={{this.angle}}
+    @use={{this.animator}}
+  as |animatedAngle|>
+    <MarginGaugeError
+      @ro={{container.radius}}
+      @ri={{container.innerRadius}}
+      @start=-90
+      @end=90
+      @angle={{animatedAngle}}
+      @errorRanges={{this.errorRanges}}
+      @negativeColor={{this.colors.negative}}
+      @positiveColor={{this.colors.positive}}
+    />
+
+    <Arc
+      @ro={{container.radius}}
+      @ri={{container.innerRadius}}
+      @start=-90
+      @end=90
+      fill="none"
+      stroke="black"
+    />
+
+    <MarginGaugeTick
+      @radius={{container.radius}}
+      @size={{container.bandSize}}
+      @angle=0
+    />
+
+    {{#each minorTicks as |tick|}}
+      <MarginGaugeTick
+        @radius={{container.radius}}
+        @size=5
+        @angle={{tick}}
+      />
+    {{/each}}
+
+    {{#each majorTicks as |tick|}}
+      <MarginGaugeTick
+        @radius={{container.radius}}
+        @size=10
+        @angle={{tick.angle}}
+      as |gaugeTick|>
+        <gaugeTick.label fill={{if tick.isPositive colors.positive colors.negative}}>
+          {{if tick.isPositive "R" "D"}}+{{tick.value}}
+        </gaugeTick.label>
+      </MarginGaugeTick>
+    {{/each}}
+
+    <MarginGaugeNeedle
+      fill={{this.currentColor}}
+      @radius={{add container.radius 15}}
+      @angle={{animatedAngle}}
+    />
+  </AnimateValue>
+</MarginGaugeContainer>
+
+<section>
+  <label>
+    Margin
+    <br>
+    <input
+      type="range"
+      value={{this.currentMargin}}
+      min="-11"
+      max="11"
+      step="1"
+      oninput={{action "updateMargin" value="target.value"}}
+    >
+  </label>
+</section>

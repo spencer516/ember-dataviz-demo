@@ -1,0 +1,17 @@
+{{#let tickData as |t|}}
+  <g transform="rotate({{t.rotation}})">
+    <line
+      x1={{t.start}}
+      x2={{t.end}}
+      stroke-width="1"
+      stroke="black"
+    />
+    {{yield (hash
+      label=(component
+        "MarginGaugeTickLabel"
+        textAnchor=t.textAnchor
+        x=t.textStart
+      )
+    )}}
+  </g>
+{{/let}}

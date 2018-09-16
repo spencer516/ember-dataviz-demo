@@ -1,0 +1,9 @@
+{{#each wedges as |wedge|}}
+  <Arc
+    @ri={{@ri}}
+    @ro={{@ro}}
+    @start={{wedge.start}}
+    @end={{wedge.end}}
+    fill={{wedge.fill}}
+  />
+{{/each}}
