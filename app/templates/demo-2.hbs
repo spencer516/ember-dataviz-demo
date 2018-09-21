@@ -1,6 +1,5 @@
-<MarginGaugeContainer @padding=50 @width=500 as |container|>
+<MarginGaugeContainer as |container|>
   <MarginGaugeNeedle
-    fill={{this.color}}
     @radius={{container.radius}}
     @angle={{this.angle}}
   />
@@ -8,7 +7,7 @@
 
 <section>
   <label>
-    Color
+    Color<br>
     <input
       type="text"
       value={{this.color}}
@@ -17,7 +16,7 @@
   </label>
   <br>
   <label>
-    Angle
+    Angle {{this.angle}}<br>
     <input
       type="range"
       value={{this.angle}}
@@ -27,4 +26,14 @@
       oninput={{action (mut this.angle) value="target.value"}}
     >
   </label>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button
+    onmousedown={{action (mut this.angle) -20}}
+    onmouseup={{action (mut this.angle) 10}}
+  >
+    Click
+  </button>
 </section>

@@ -23,7 +23,7 @@ export default function getVal(x) {
 
   const y = lerp(vertices[xMin], vertices[xMax], tRemapSmoothstep);
 
-  return y * amplitude;
+  return y * amplitude - amplitude * 0.5;
 }
 
 function lerp(a, b, t) {
