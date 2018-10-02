@@ -1,3 +1,7 @@
+# Slides from the Corresponding Ember Camp Talk
+
+https://spencer516.github.io/ember-dataviz-demo
+
 # ember-dataviz-demo
 
 This README outlines the details of collaborating on this Ember application.
